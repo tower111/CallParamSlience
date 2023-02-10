@@ -6,7 +6,7 @@ public class Configer {
         InitBadFuncName();
     }
     public ArrayList<String>BadFuncName=new ArrayList<>();
-
+    public boolean TraceOneFStart=false;  //是否追踪一个变量的多次赋值，true为追踪，否则不追踪
 
     public void InitBadFuncName(){
         BadFuncName.add("__libc_start_main");

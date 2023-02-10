@@ -29,6 +29,7 @@ public class FuncTypeInterface {
 
     public FuncTypeStruct strncmp = new FuncTypeStruct("strncmp", FuncTypeEnum.typeEnum.Control, new ArrayList<Integer>(List.of(0,1,2)), new ArrayList<Integer>(List.of()));
     public FuncTypeStruct strcmp = new FuncTypeStruct("strcmp", FuncTypeEnum.typeEnum.Control, new ArrayList<Integer>(List.of(0,1)), new ArrayList<Integer>(List.of()));
+    public FuncTypeStruct strncpy = new FuncTypeStruct("strncpy", FuncTypeEnum.typeEnum.Control, new ArrayList<Integer>(List.of(0,1,2)), new ArrayList<Integer>(List.of(0)));
 
     public FuncTypeStruct strcasecmp = new FuncTypeStruct("strcasecmp", FuncTypeEnum.typeEnum.Control, new ArrayList<Integer>(List.of(0,1)), new ArrayList<Integer>(List.of()));
 
