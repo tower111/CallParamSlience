@@ -341,56 +341,61 @@ public class Comfu_function extends GhidraScript {
 //        for()
 //    }
 
-        private ArrayList<ClangToken> get_ref(ClangToken token,boolean start) throws ClassNotFoundException, InstantiationException, IllegalAccessException {
-            /*
-            判断token在其所在的语句中是否被引用
-            如果token被引用，返回对token赋值或返回
-            * */
-            ArrayList<ClangToken> result = new ArrayList<ClangToken>();
-            if(!(token.Parent() instanceof ClangStatement)) {//所在指令非指令:定义变量
+    private ArrayList<ClangToken> get_ref(ClangToken token,boolean start) throws ClassNotFoundException, InstantiationException, IllegalAccessException {
+        /*
+        判断token在其所在的语句中是否被引用
+        如果token被引用，返回对token赋值或返回
+        * */
+        ArrayList<ClangToken> result = new ArrayList<ClangToken>();
+        if (!(token.Parent() instanceof ClangStatement)) {//所在指令非指令:定义变量
+            result.add(token);
+            return result;
+        }
+        //        if(token.Parent() instanceof ClangTokenGroup) {//某个token的parent可能为整个函数，或者一个块
+        //            result.add(token);
+        //            return result;
+        //        }
+        ClangNode exp = token.Parent();
+
+        ArrayList<ClangToken> prev = new ArrayList<ClangToken>();
+        ArrayList<ClangToken> after = new ArrayList<ClangToken>();
+        boolean Iscall_statement = false;
+        boolean equl_flag = false;
+        if (token.Parent() instanceof ClangVariableDecl) {//token所在的指令为定义变量
+            prev.add(token);
+        } else if (((ClangStatement) token.Parent()).getPcodeOp().getOpcode() == PcodeOp.CALL ||
+                token.getPcodeOp().getOpcode() == PcodeOp.CALL) {//函数调用
+            Iscall_statement = true;
+            equl_flag = read_write(exp, prev, after, equl_flag);
+        } else if (exp.toString().contains("=") && !exp.toString().contains("==")) {//赋值语句
+            equl_flag = read_write(exp, prev, after, equl_flag);
+
+        } else {// 如果遇到控制语句
+            after.add(token);
+        }
+
+        //token在等号左边，追踪等式左边和右边的变量  var=xxxxxx,var[index]=xxxx
+        //token在等号右边，不管       xxxx=var   xxxx=func(var,xxxx)
+        //        if(equl_flag){
+        assert prev.contains(token) | after.contains(token);
+        if (prev.contains(token)) {//token在等号左边  out   或第一次进入该切片收集函数
+            result.addAll(prev);
+            for (ClangToken A : after) {
+                if (!result.contains(A))
+                    result.addAll(after);
+            }
+
+        } else if (after.contains(token)) {//in
+            if (Iscall_statement) {
+                //                result.addAll(after);
                 result.add(token);
-                return result;
             }
-    //        if(token.Parent() instanceof ClangTokenGroup) {//某个token的parent可能为整个函数，或者一个块
-    //            result.add(token);
-    //            return result;
-    //        }
-            ClangNode exp = token.Parent();
-
-            ArrayList<ClangToken> prev = new ArrayList<ClangToken>();
-            ArrayList<ClangToken> after = new ArrayList<ClangToken>();
-            boolean Iscall_statement = false;
-            boolean equl_flag = false;
-            if (token.Parent() instanceof ClangVariableDecl) {//token所在的指令为定义变量
-                prev.add(token);
-            } else if (((ClangStatement) token.Parent()).getPcodeOp().getOpcode() == PcodeOp.CALL ||
-                    token.getPcodeOp().getOpcode() == PcodeOp.CALL) {//函数调用
-                Iscall_statement = true;
-                equl_flag = read_write(exp, prev, after, equl_flag);
-            } else if (exp.toString().contains("=") && !exp.toString().contains("==")) {//赋值语句
-                equl_flag = read_write(exp, prev, after, equl_flag);
-
-            }else{// 如果遇到控制语句
-                after.add(token);
+        }
+        if (config.TraceOneFStart) {
+            if (result.contains(token)) {
+                result.remove(token);
             }
-
-            //token在等号左边，追踪等式左边和右边的变量  var=xxxxxx,var[index]=xxxx
-            //token在等号右边，不管       xxxx=var   xxxx=func(var,xxxx)
-    //        if(equl_flag){
-            assert prev.contains(token) | after.contains(token);
-            if (prev.contains(token) ) {//token在等号左边  out   或第一次进入该切片收集函数
-                result.addAll(prev);
-                for(ClangToken A:after){
-                    if (!result.contains(A))
-                        result.addAll(after);
-                }
-
-            } else if (after.contains(token)) {//in
-                if (Iscall_statement) {
-    //                result.addAll(after);
-                    result.add(token);
-                }
-            }
+        }
 //            if(result.size()==0){//当前token为out，继续向上迭代
 //                result.add(token);
 //            }
@@ -399,7 +404,7 @@ public class Comfu_function extends GhidraScript {
 //            println("result:  "+result.toString());
 //            println();
 
-             return result;
+        return result;
     }
 
     private boolean read_write(ClangNode exp, ArrayList<ClangToken> prev, ArrayList<ClangToken> after, boolean equl_flag) throws ClassNotFoundException, InstantiationException, IllegalAccessException {
