@@ -1,0 +1,1138 @@
+{
+  "FUN_00018c44@@memset@@0": {
+    "binary_path": "/Users/guosiyu/Desktop/tower/ctf/iot/ciscoRV16/mini_httpd_patched" ,
+    "Func_name": "FUN_00018c44" ,
+    "Func_address": "00018c44" ,
+    "fu_inFunc_index": "0" ,
+    "Fu_funcname": "memset" ,
+    "Call_address": "00018c74" ,
+    "CallBlockAddress": "00018c44" ,
+    "num_param": "3" ,
+    "Fu_Pcode": [
+      {
+        "param0": [
+          "1024"
+        ]
+      } ,
+      {
+        "param1": [
+          "0"
+        ]
+      } ,
+      {
+        "param2": [
+          "0x400"
+        ]
+      }
+    ] ,
+    "Fu_Ccode": [
+      {
+        "param0": [
+          "auStack12052"
+        ]
+      } ,
+      {
+        "param1": [
+          "0"
+        ]
+      } ,
+      {
+        "param2": [
+          "0x400"
+        ]
+      }
+    ]
+  } ,
+  "FUN_00018c44@@strncpy@@0": {
+    "binary_path": "/Users/guosiyu/Desktop/tower/ctf/iot/ciscoRV16/mini_httpd_patched" ,
+    "Func_name": "FUN_00018c44" ,
+    "Func_address": "00018c44" ,
+    "fu_inFunc_index": "0" ,
+    "Fu_funcname": "strncpy" ,
+    "Call_address": "00018c9c" ,
+    "CallBlockAddress": "00018c44" ,
+    "num_param": "3" ,
+    "Fu_Pcode": [
+      {
+        "param0": [
+          "5000"
+        ]
+      } ,
+      {
+        "param1": [
+          "10000"
+        ]
+      }
+    ] ,
+    "Fu_Ccode": [
+      {
+        "param0": [
+          "local_272c"
+        ]
+      } ,
+      {
+        "param1": [
+          "10000"
+        ]
+      }
+    ]
+  } ,
+  "FUN_00018c44@@strrchr@@0": {
+    "binary_path": "/Users/guosiyu/Desktop/tower/ctf/iot/ciscoRV16/mini_httpd_patched" ,
+    "Func_name": "FUN_00018c44" ,
+    "Func_address": "00018c44" ,
+    "fu_inFunc_index": "0" ,
+    "Fu_funcname": "strrchr" ,
+    "Call_address": "00018cb4" ,
+    "CallBlockAddress": "00018c44" ,
+    "num_param": "2" ,
+    "Fu_Pcode": [
+      {
+        "param0": [
+          "register@@0x2c@@PTRSUB@@register@@0x54@@const@@0xffffd8d4" ,
+          "5000"
+        ]
+      } ,
+      {
+        "param1": [
+          "0x2f"
+        ]
+      }
+    ] ,
+    "Fu_Ccode": [
+      {
+        "param0": [
+          "strncpy((char *)local_272c,DAT_0003559c,10000)" ,
+          "local_272c"
+        ]
+      } ,
+      {
+        "param1": [
+          "0x2f"
+        ]
+      }
+    ]
+  } ,
+  "FUN_00018c44@@strcmp@@0": {
+    "binary_path": "/Users/guosiyu/Desktop/tower/ctf/iot/ciscoRV16/mini_httpd_patched" ,
+    "Func_name": "FUN_00018c44" ,
+    "Func_address": "00018c44" ,
+    "fu_inFunc_index": "0" ,
+    "Fu_funcname": "strcmp" ,
+    "Call_address": "00018d04" ,
+    "CallBlockAddress": "00018cec" ,
+    "num_param": "2" ,
+    "Fu_Pcode": [
+      {
+        "param0": [
+          "@@@@CALL@@ram@@strncpy@@unique@@0x100001d1"
+        ]
+      } ,
+      {
+        "param1": [
+          "\".htpasswd\""
+        ]
+      }
+    ] ,
+    "Fu_Ccode": [
+      {
+        "param0": [
+          "strncpy((char *)local_272c,DAT_0003559c,10000)"
+        ]
+      } ,
+      {
+        "param1": [
+          "\".htpasswd\""
+        ]
+      }
+    ]
+  } ,
+  "FUN_00018c44@@strlen@@0": {
+    "binary_path": "/Users/guosiyu/Desktop/tower/ctf/iot/ciscoRV16/mini_httpd_patched" ,
+    "Func_name": "FUN_00018c44" ,
+    "Func_address": "00018c44" ,
+    "fu_inFunc_index": "0" ,
+    "Fu_funcname": "strlen" ,
+    "Call_address": "00018d30" ,
+    "CallBlockAddress": "00018d14" ,
+    "num_param": "1" ,
+    "Fu_Pcode": [
+      {
+        "param0": [
+          "@@@@CALL@@ram@@strncpy@@unique@@0x100001d1" ,
+          "register@@0x20@@CALL@@ram@@strcmp@@ram@@0x3559c"
+        ]
+      }
+    ] ,
+    "Fu_Ccode": [
+      {
+        "param0": [
+          "strncpy((char *)local_272c,DAT_0003559c,10000)" ,
+          "iVar2 = strcmp(DAT_0003559c,\".htpasswd\")"
+        ]
+      }
+    ]
+  } ,
+  "FUN_00018c44@@strcmp@@1": {
+    "binary_path": "/Users/guosiyu/Desktop/tower/ctf/iot/ciscoRV16/mini_httpd_patched" ,
+    "Func_name": "FUN_00018c44" ,
+    "Func_address": "00018c44" ,
+    "fu_inFunc_index": "1" ,
+    "Fu_funcname": "strcmp" ,
+    "Call_address": "00018d4c" ,
+    "CallBlockAddress": "00018d14" ,
+    "num_param": "4" ,
+    "Fu_Pcode": [
+      {
+        "param0": [
+          "@@@@CALL@@ram@@strncpy@@unique@@0x100001d1" ,
+          "register@@0x20@@CALL@@ram@@strcmp@@ram@@0x3559c" ,
+          "unique@@0x100001c9@@COPY@@ram@@0x3559c@@@@"
+        ]
+      } ,
+      {
+        "param1": [
+          "@@@@CALL@@ram@@strncpy@@unique@@0x100001d1" ,
+          "register@@0x20@@CALL@@ram@@strlen@@ram@@0x3559c" ,
+          "register@@0x20@@CALL@@ram@@strcmp@@ram@@0x3559c"
+        ]
+      } ,
+      {
+        "param2": [
+          "9"
+        ]
+      } ,
+      {
+        "param3": [
+          "\".htpasswd\""
+        ]
+      }
+    ] ,
+    "Fu_Ccode": [
+      {
+        "param0": [
+          "strncpy((char *)local_272c,DAT_0003559c,10000)" ,
+          "pcVar1 = DAT_0003559c" ,
+          "pcVar1" ,
+          "iVar2 = strcmp(DAT_0003559c,\".htpasswd\")"
+        ]
+      } ,
+      {
+        "param1": [
+          "strncpy((char *)local_272c,DAT_0003559c,10000)" ,
+          "sVar3 = strlen(DAT_0003559c)" ,
+          "sVar3" ,
+          "iVar2 = strcmp(DAT_0003559c,\".htpasswd\")"
+        ]
+      } ,
+      {
+        "param2": [
+          "9"
+        ]
+      } ,
+      {
+        "param3": [
+          "\".htpasswd\""
+        ]
+      }
+    ]
+  } ,
+  "FUN_00018c44@@strlen@@1": {
+    "binary_path": "/Users/guosiyu/Desktop/tower/ctf/iot/ciscoRV16/mini_httpd_patched" ,
+    "Func_name": "FUN_00018c44" ,
+    "Func_address": "00018c44" ,
+    "fu_inFunc_index": "1" ,
+    "Fu_funcname": "strlen" ,
+    "Call_address": "00018d78" ,
+    "CallBlockAddress": "00018d5c" ,
+    "num_param": "1" ,
+    "Fu_Pcode": [
+      {
+        "param0": [
+          "@@@@CALL@@ram@@strncpy@@unique@@0x100001d1" ,
+          "register@@0x20@@CALL@@ram@@strlen@@ram@@0x3559c" ,
+          "register@@0x20@@CALL@@ram@@strcmp@@ram@@0x3559c"
+        ]
+      }
+    ] ,
+    "Fu_Ccode": [
+      {
+        "param0": [
+          "strncpy((char *)local_272c,DAT_0003559c,10000)" ,
+          "sVar3 = strlen(DAT_0003559c)" ,
+          "iVar2 = strcmp(DAT_0003559c,\".htpasswd\")"
+        ]
+      }
+    ]
+  } ,
+  "FUN_00018c44@@FUN_0001e22c@@0": {
+    "binary_path": "/Users/guosiyu/Desktop/tower/ctf/iot/ciscoRV16/mini_httpd_patched" ,
+    "Func_name": "FUN_00018c44" ,
+    "Func_address": "00018c44" ,
+    "fu_inFunc_index": "0" ,
+    "Fu_funcname": "FUN_0001e22c" ,
+    "Call_address": "00018d9c" ,
+    "CallBlockAddress": "00018d94" ,
+    "num_param": "1" ,
+    "Fu_Pcode": [] ,
+    "Fu_Ccode": []
+  } ,
+  "FUN_00018c44@@syslog@@0": {
+    "binary_path": "/Users/guosiyu/Desktop/tower/ctf/iot/ciscoRV16/mini_httpd_patched" ,
+    "Func_name": "FUN_00018c44" ,
+    "Func_address": "00018c44" ,
+    "fu_inFunc_index": "0" ,
+    "Fu_funcname": "syslog" ,
+    "Call_address": "00018dbc" ,
+    "CallBlockAddress": "00018d94" ,
+    "num_param": "4" ,
+    "Fu_Pcode": [
+      {
+        "param0": [
+          "5"
+        ]
+      } ,
+      {
+        "param1": [
+          "\"%.80s URL \\\"%.80s\\\" tried to retrieve an auth file\""
+        ]
+      } ,
+      {
+        "param2": [
+          "register@@0x20@@CALL@@ram@@FUN_0001e22c@@unique@@0x1000019d" ,
+          "unique@@0x1000019d@@PTRSUB@@const@@0x0@@const@@0x35304"
+        ]
+      }
+    ] ,
+    "Fu_Ccode": [
+      {
+        "param0": [
+          "5"
+        ]
+      } ,
+      {
+        "param1": [
+          "\"%.80s URL \\\"%.80s\\\" tried to retrieve an auth file\""
+        ]
+      } ,
+      {
+        "param2": [
+          "uVar4 = FUN_0001e22c(&DAT_00035304)" ,
+          "uVar4"
+        ]
+      }
+    ]
+  } ,
+  "FUN_00018c44@@FUN_0001ba24@@0": {
+    "binary_path": "/Users/guosiyu/Desktop/tower/ctf/iot/ciscoRV16/mini_httpd_patched" ,
+    "Func_name": "FUN_00018c44" ,
+    "Func_address": "00018c44" ,
+    "fu_inFunc_index": "0" ,
+    "Fu_funcname": "FUN_0001ba24" ,
+    "Call_address": "00018ddc" ,
+    "CallBlockAddress": "00018d94" ,
+    "num_param": "4" ,
+    "Fu_Pcode": [
+      {
+        "param0": [
+          "0x193"
+        ]
+      } ,
+      {
+        "param1": [
+          "\"Forbidden\""
+        ]
+      } ,
+      {
+        "param2": [
+          "\"File is protected.\""
+        ]
+      }
+    ] ,
+    "Fu_Ccode": [
+      {
+        "param0": [
+          "0x193"
+        ]
+      } ,
+      {
+        "param1": [
+          "\"Forbidden\""
+        ]
+      } ,
+      {
+        "param2": [
+          "\"File is protected.\""
+        ]
+      }
+    ]
+  } ,
+  "FUN_00018c44@@FUN_0001b340@@0": {
+    "binary_path": "/Users/guosiyu/Desktop/tower/ctf/iot/ciscoRV16/mini_httpd_patched" ,
+    "Func_name": "FUN_00018c44" ,
+    "Func_address": "00018c44" ,
+    "fu_inFunc_index": "0" ,
+    "Fu_funcname": "FUN_0001b340" ,
+    "Call_address": "00018df0" ,
+    "CallBlockAddress": "00018de0" ,
+    "num_param": "1" ,
+    "Fu_Pcode": [
+      {
+        "param0": [
+          "@@@@CALL@@ram@@strncpy@@unique@@0x100001d1" ,
+          "register@@0x20@@CALL@@ram@@strlen@@ram@@0x3559c" ,
+          "register@@0x20@@CALL@@ram@@strcmp@@ram@@0x3559c"
+        ]
+      }
+    ] ,
+    "Fu_Ccode": [
+      {
+        "param0": [
+          "strncpy((char *)local_272c,DAT_0003559c,10000)" ,
+          "sVar3 = strlen(DAT_0003559c)" ,
+          "iVar2 = strcmp(DAT_0003559c,\".htpasswd\")"
+        ]
+      }
+    ]
+  } ,
+  "FUN_00018c44@@strncmp@@0": {
+    "binary_path": "/Users/guosiyu/Desktop/tower/ctf/iot/ciscoRV16/mini_httpd_patched" ,
+    "Func_name": "FUN_00018c44" ,
+    "Func_address": "00018c44" ,
+    "fu_inFunc_index": "0" ,
+    "Fu_funcname": "strncmp" ,
+    "Call_address": "00018e28" ,
+    "CallBlockAddress": "00018e0c" ,
+    "num_param": "3" ,
+    "Fu_Pcode": [
+      {
+        "param0": [
+          "@@@@CALL@@ram@@strncpy@@unique@@0x100001d1" ,
+          "register@@0x20@@CALL@@ram@@strlen@@ram@@0x3559c" ,
+          "register@@0x20@@CALL@@ram@@strcmp@@ram@@0x3559c" ,
+          "@@@@CALL@@ram@@FUN_0001b340@@ram@@0x3559c"
+        ]
+      } ,
+      {
+        "param1": [
+          "\"dniapi/\""
+        ]
+      } ,
+      {
+        "param2": [
+          "7"
+        ]
+      }
+    ] ,
+    "Fu_Ccode": [
+      {
+        "param0": [
+          "strncpy((char *)local_272c,DAT_0003559c,10000)" ,
+          "sVar3 = strlen(DAT_0003559c)" ,
+          "iVar2 = strcmp(DAT_0003559c,\".htpasswd\")" ,
+          "FUN_0001b340(DAT_0003559c)"
+        ]
+      } ,
+      {
+        "param1": [
+          "\"dniapi/\""
+        ]
+      } ,
+      {
+        "param2": [
+          "7"
+        ]
+      }
+    ]
+  } ,
+  "FUN_00018c44@@FUN_0001ba24@@1": {
+    "binary_path": "/Users/guosiyu/Desktop/tower/ctf/iot/ciscoRV16/mini_httpd_patched" ,
+    "Func_name": "FUN_00018c44" ,
+    "Func_address": "00018c44" ,
+    "fu_inFunc_index": "1" ,
+    "Fu_funcname": "FUN_0001ba24" ,
+    "Call_address": "00018e84" ,
+    "CallBlockAddress": "00018e68" ,
+    "num_param": "4" ,
+    "Fu_Pcode": [
+      {
+        "param0": [
+          "0x194"
+        ]
+      } ,
+      {
+        "param1": [
+          "\"Not Found\""
+        ]
+      } ,
+      {
+        "param2": [
+          "unique@@0x10000155@@PTRSUB@@const@@0x0@@const@@0x20108"
+        ]
+      } ,
+      {
+        "param3": [
+          "\"File not found.\""
+        ]
+      }
+    ] ,
+    "Fu_Ccode": [
+      {
+        "param0": [
+          "0x194"
+        ]
+      } ,
+      {
+        "param1": [
+          "\"Not Found\""
+        ]
+      } ,
+      {
+        "param2": [
+          "FUN_0001ba24(0x193,\"Forbidden\",&DAT_00020108,\"File is protected.\")"
+        ]
+      } ,
+      {
+        "param3": [
+          "\"File not found.\""
+        ]
+      }
+    ]
+  } ,
+  "FUN_00018c44@@open@@0": {
+    "binary_path": "/Users/guosiyu/Desktop/tower/ctf/iot/ciscoRV16/mini_httpd_patched" ,
+    "Func_name": "FUN_00018c44" ,
+    "Func_address": "00018c44" ,
+    "fu_inFunc_index": "0" ,
+    "Fu_funcname": "open" ,
+    "Call_address": "00018e9c" ,
+    "CallBlockAddress": "00018e88" ,
+    "num_param": "2" ,
+    "Fu_Pcode": [
+      {
+        "param0": [
+          "@@@@CALL@@ram@@strncpy@@unique@@0x100001d1" ,
+          "register@@0x20@@CALL@@ram@@strlen@@ram@@0x3559c" ,
+          "register@@0x20@@CALL@@ram@@strcmp@@ram@@0x3559c" ,
+          "register@@0x20@@CALL@@ram@@strncmp@@ram@@0x3559c" ,
+          "@@@@CALL@@ram@@FUN_0001b340@@ram@@0x3559c"
+        ]
+      } ,
+      {
+        "param1": [
+          "0"
+        ]
+      }
+    ] ,
+    "Fu_Ccode": [
+      {
+        "param0": [
+          "strncpy((char *)local_272c,DAT_0003559c,10000)" ,
+          "sVar3 = strlen(DAT_0003559c)" ,
+          "iVar2 = strncmp(DAT_0003559c,\"dniapi/\",7)" ,
+          "iVar2 = strcmp(DAT_0003559c,\".htpasswd\")" ,
+          "FUN_0001b340(DAT_0003559c)"
+        ]
+      } ,
+      {
+        "param1": [
+          "0"
+        ]
+      }
+    ]
+  } ,
+  "FUN_00018c44@@FUN_0001e22c@@1": {
+    "binary_path": "/Users/guosiyu/Desktop/tower/ctf/iot/ciscoRV16/mini_httpd_patched" ,
+    "Func_name": "FUN_00018c44" ,
+    "Func_address": "00018c44" ,
+    "fu_inFunc_index": "1" ,
+    "Fu_funcname": "FUN_0001e22c" ,
+    "Call_address": "00018eb8" ,
+    "CallBlockAddress": "00018eb0" ,
+    "num_param": "1" ,
+    "Fu_Pcode": [
+      {
+        "param0": [
+          "unique@@0x1000019d@@PTRSUB@@const@@0x0@@const@@0x35304"
+        ]
+      }
+    ] ,
+    "Fu_Ccode": [
+      {
+        "param0": [
+          "uVar4 = FUN_0001e22c(&DAT_00035304)"
+        ]
+      }
+    ]
+  } ,
+  "FUN_00018c44@@syslog@@1": {
+    "binary_path": "/Users/guosiyu/Desktop/tower/ctf/iot/ciscoRV16/mini_httpd_patched" ,
+    "Func_name": "FUN_00018c44" ,
+    "Func_address": "00018c44" ,
+    "fu_inFunc_index": "1" ,
+    "Fu_funcname": "syslog" ,
+    "Call_address": "00018ed8" ,
+    "CallBlockAddress": "00018eb0" ,
+    "num_param": "4" ,
+    "Fu_Pcode": [
+      {
+        "param0": [
+          "6"
+        ]
+      } ,
+      {
+        "param1": [
+          "\"%.80s File \\\"%.80s\\\" is protected\""
+        ]
+      } ,
+      {
+        "param2": [
+          "register@@0x20@@CALL@@ram@@FUN_0001e22c@@unique@@0x100001a1" ,
+          "unique@@0x100001a1@@PTRSUB@@const@@0x0@@const@@0x35304" ,
+          "@@@@CALL@@ram@@syslog@@const@@0x5" ,
+          "register@@0x20@@CALL@@ram@@FUN_0001e22c@@unique@@0x1000019d" ,
+          "unique@@0x1000019d@@PTRSUB@@const@@0x0@@const@@0x35304"
+        ]
+      } ,
+      {
+        "param3": [
+          "@@@@CALL@@ram@@syslog@@const@@0x5"
+        ]
+      }
+    ] ,
+    "Fu_Ccode": [
+      {
+        "param0": [
+          "6"
+        ]
+      } ,
+      {
+        "param1": [
+          "\"%.80s File \\\"%.80s\\\" is protected\""
+        ]
+      } ,
+      {
+        "param2": [
+          "uVar4 = FUN_0001e22c(&DAT_00035304)" ,
+          "syslog(5,\"%.80s URL \\\"%.80s\\\" tried to retrieve an auth file\",uVar4,DAT_00035398)" ,
+          "uVar4"
+        ]
+      } ,
+      {
+        "param3": [
+          "syslog(5,\"%.80s URL \\\"%.80s\\\" tried to retrieve an auth file\",uVar4,DAT_00035398)"
+        ]
+      }
+    ]
+  } ,
+  "FUN_00018c44@@FUN_0001ba24@@2": {
+    "binary_path": "/Users/guosiyu/Desktop/tower/ctf/iot/ciscoRV16/mini_httpd_patched" ,
+    "Func_name": "FUN_00018c44" ,
+    "Func_address": "00018c44" ,
+    "fu_inFunc_index": "2" ,
+    "Fu_funcname": "FUN_0001ba24" ,
+    "Call_address": "00018ef8" ,
+    "CallBlockAddress": "00018eb0" ,
+    "num_param": "4" ,
+    "Fu_Pcode": [
+      {
+        "param0": [
+          "0x193"
+        ]
+      } ,
+      {
+        "param1": [
+          "\"Forbidden\""
+        ]
+      } ,
+      {
+        "param2": [
+          "unique@@0x10000159@@PTRSUB@@const@@0x0@@const@@0x20108" ,
+          "unique@@0x10000155@@PTRSUB@@const@@0x0@@const@@0x20108"
+        ]
+      } ,
+      {
+        "param3": [
+          "\"File is protected.\""
+        ]
+      }
+    ] ,
+    "Fu_Ccode": [
+      {
+        "param0": [
+          "0x193"
+        ]
+      } ,
+      {
+        "param1": [
+          "\"Forbidden\""
+        ]
+      } ,
+      {
+        "param2": [
+          "FUN_0001ba24(0x194,\"Not Found\",&DAT_00020108,\"File not found.\")" ,
+          "FUN_0001ba24(0x193,\"Forbidden\",&DAT_00020108,\"File is protected.\")"
+        ]
+      } ,
+      {
+        "param3": [
+          "\"File is protected.\""
+        ]
+      }
+    ]
+  } ,
+  "FUN_00018c44@@FUN_0001d6f4@@0": {
+    "binary_path": "/Users/guosiyu/Desktop/tower/ctf/iot/ciscoRV16/mini_httpd_patched" ,
+    "Func_name": "FUN_00018c44" ,
+    "Func_address": "00018c44" ,
+    "fu_inFunc_index": "0" ,
+    "Fu_funcname": "FUN_0001d6f4" ,
+    "Call_address": "00018f20" ,
+    "CallBlockAddress": "00018efc" ,
+    "num_param": "3" ,
+    "Fu_Pcode": [
+      {
+        "param0": [
+          "@@@@CALL@@ram@@strncpy@@unique@@0x100001d1" ,
+          "register@@0x20@@CALL@@ram@@strlen@@ram@@0x3559c" ,
+          "register@@0x20@@CALL@@ram@@strcmp@@ram@@0x3559c" ,
+          "register@@0x20@@CALL@@ram@@strncmp@@ram@@0x3559c" ,
+          "register@@0x20@@CALL@@ram@@open@@ram@@0x3559c" ,
+          "@@@@CALL@@ram@@FUN_0001b340@@ram@@0x3559c"
+        ]
+      } ,
+      {
+        "param1": [
+          "500"
+        ]
+      } ,
+      {
+        "param2": [
+          "500"
+        ]
+      }
+    ] ,
+    "Fu_Ccode": [
+      {
+        "param0": [
+          "strncpy((char *)local_272c,DAT_0003559c,10000)" ,
+          "sVar3 = strlen(DAT_0003559c)" ,
+          "local_18 = open(DAT_0003559c,0)" ,
+          "iVar2 = strncmp(DAT_0003559c,\"dniapi/\",7)" ,
+          "iVar2 = strcmp(DAT_0003559c,\".htpasswd\")" ,
+          "FUN_0001b340(DAT_0003559c)"
+        ]
+      } ,
+      {
+        "param1": [
+          "auStack10528"
+        ]
+      } ,
+      {
+        "param2": [
+          "500"
+        ]
+      }
+    ]
+  } ,
+  "FUN_00018c44@@snprintf@@0": {
+    "binary_path": "/Users/guosiyu/Desktop/tower/ctf/iot/ciscoRV16/mini_httpd_patched" ,
+    "Func_name": "FUN_00018c44" ,
+    "Func_address": "00018c44" ,
+    "fu_inFunc_index": "0" ,
+    "Fu_funcname": "snprintf" ,
+    "Call_address": "00018f50" ,
+    "CallBlockAddress": "00018efc" ,
+    "num_param": "4" ,
+    "Fu_Pcode": [
+      {
+        "param0": [
+          "500"
+        ]
+      } ,
+      {
+        "param1": [
+          "500"
+        ]
+      } ,
+      {
+        "param2": [
+          "@@@@CALL@@ram@@strncpy@@unique@@0x100001d1" ,
+          "unique@@0x100001d9@@CALL@@ram@@FUN_0001d6f4@@ram@@0x3559c" ,
+          "register@@0x2c@@PTRSUB@@register@@0x54@@const@@0xffffd6e0" ,
+          "register@@0x20@@CALL@@ram@@strncmp@@ram@@0x3559c" ,
+          "register@@0x20@@CALL@@ram@@open@@ram@@0x3559c" ,
+          "@@@@CALL@@ram@@FUN_0001b340@@ram@@0x3559c" ,
+          "register@@0x20@@CALL@@ram@@strlen@@ram@@0x3559c" ,
+          "register@@0x20@@CALL@@ram@@strcmp@@ram@@0x3559c" ,
+          "register@@0x20@@CAST@@unique@@0x100001d9@@@@" ,
+          "500"
+        ]
+      }
+    ] ,
+    "Fu_Ccode": [
+      {
+        "param0": [
+          "acStack11028"
+        ]
+      } ,
+      {
+        "param1": [
+          "500"
+        ]
+      } ,
+      {
+        "param2": [
+          "sVar3 = strlen(DAT_0003559c)" ,
+          "local_18 = open(DAT_0003559c,0)" ,
+          "iVar2 = strcmp(DAT_0003559c,\".htpasswd\")" ,
+          "auStack10528" ,
+          "local_1c" ,
+          "strncpy((char *)local_272c,DAT_0003559c,10000)" ,
+          "500" ,
+          "iVar2 = strncmp(DAT_0003559c,\"dniapi/\",7)" ,
+          "FUN_0001b340(DAT_0003559c)" ,
+          "local_1c = (char *)FUN_0001d6f4(DAT_0003559c,auStack10528,500)"
+        ]
+      }
+    ]
+  } ,
+  "FUN_00018c44@@FUN_0001be24@@0": {
+    "binary_path": "/Users/guosiyu/Desktop/tower/ctf/iot/ciscoRV16/mini_httpd_patched" ,
+    "Func_name": "FUN_00018c44" ,
+    "Func_address": "00018c44" ,
+    "fu_inFunc_index": "0" ,
+    "Fu_funcname": "FUN_0001be24" ,
+    "Call_address": "0001902c" ,
+    "CallBlockAddress": "00018fdc" ,
+    "num_param": "7" ,
+    "Fu_Pcode": [
+      {
+        "param0": [
+          "200"
+        ]
+      } ,
+      {
+        "param1": [
+          "unique@@0x1000015d@@PTRSUB@@const@@0x0@@const@@0x20108" ,
+          "unique@@0x10000159@@PTRSUB@@const@@0x0@@const@@0x20108" ,
+          "unique@@0x10000155@@PTRSUB@@const@@0x0@@const@@0x20108"
+        ]
+      } ,
+      {
+        "param2": [
+          "500"
+        ]
+      } ,
+      {
+        "param3": [
+          "@@@@CALL@@ram@@strncpy@@unique@@0x100001d1" ,
+          "unique@@0x100001d9@@CALL@@ram@@FUN_0001d6f4@@ram@@0x3559c" ,
+          "register@@0x2c@@PTRSUB@@register@@0x54@@const@@0xffffd6e0" ,
+          "register@@0x20@@CALL@@ram@@strncmp@@ram@@0x3559c" ,
+          "register@@0x20@@CALL@@ram@@open@@ram@@0x3559c" ,
+          "@@@@CALL@@ram@@FUN_0001b340@@ram@@0x3559c" ,
+          "register@@0x20@@CALL@@ram@@strlen@@ram@@0x3559c" ,
+          "@@@@CALL@@ram@@snprintf@@register@@0x2c" ,
+          "register@@0x20@@CALL@@ram@@strcmp@@ram@@0x3559c" ,
+          "register@@0x20@@CAST@@unique@@0x100001d9@@@@" ,
+          "register@@0x2c@@PTRSUB@@register@@0x54@@const@@0xffffd4ec" ,
+          "500"
+        ]
+      }
+    ] ,
+    "Fu_Ccode": [
+      {
+        "param0": [
+          "200"
+        ]
+      } ,
+      {
+        "param1": [
+          "FUN_0001ba24(0x193,\"Forbidden\",&DAT_00020108,\"File is protected.\")" ,
+          "FUN_0001ba24(0x194,\"Not Found\",&DAT_00020108,\"File not found.\")"
+        ]
+      } ,
+      {
+        "param2": [
+          "auStack10528"
+        ]
+      } ,
+      {
+        "param3": [
+          "sVar3 = strlen(DAT_0003559c)" ,
+          "snprintf(acStack11028,500,local_1c,DAT_00034230)" ,
+          "local_18 = open(DAT_0003559c,0)" ,
+          "iVar2 = strcmp(DAT_0003559c,\".htpasswd\")" ,
+          "auStack10528" ,
+          "local_1c" ,
+          "strncpy((char *)local_272c,DAT_0003559c,10000)" ,
+          "500" ,
+          "iVar2 = strncmp(DAT_0003559c,\"dniapi/\",7)" ,
+          "FUN_0001b340(DAT_0003559c)" ,
+          "acStack11028" ,
+          "local_1c = (char *)FUN_0001d6f4(DAT_0003559c,auStack10528,500)"
+        ]
+      }
+    ]
+  } ,
+  "FUN_00018c44@@FUN_0001c944@@0": {
+    "binary_path": "/Users/guosiyu/Desktop/tower/ctf/iot/ciscoRV16/mini_httpd_patched" ,
+    "Func_name": "FUN_00018c44" ,
+    "Func_address": "00018c44" ,
+    "fu_inFunc_index": "0" ,
+    "Fu_funcname": "FUN_0001c944" ,
+    "Call_address": "000190b4" ,
+    "CallBlockAddress": "00019090" ,
+    "num_param": "3" ,
+    "Fu_Pcode": [
+      {
+        "param0": [
+          "@@@@CALL@@ram@@strncpy@@unique@@0x100001d1" ,
+          "0" ,
+          "register@@0x20@@CALL@@ram@@strlen@@ram@@0x3559c" ,
+          "register@@0x20@@CALL@@ram@@strcmp@@ram@@0x3559c" ,
+          "register@@0x64@@INT_SLESS@@register@@0x20@@const@@0x0" ,
+          "register@@0x20@@CALL@@ram@@strncmp@@ram@@0x3559c" ,
+          "register@@0x20@@CALL@@ram@@open@@ram@@0x3559c" ,
+          "@@@@CALL@@ram@@FUN_0001b340@@ram@@0x3559c"
+        ]
+      } ,
+      {
+        "param1": [
+          "@@@@CALL@@ram@@FUN_0001be24@@const@@0xc8" ,
+          "unique@@0x2600@@INT_SLESS@@const@@0x0@@ram@@0x38c04"
+        ]
+      }
+    ] ,
+    "Fu_Ccode": [
+      {
+        "param0": [
+          "local_18" ,
+          "strncpy((char *)local_272c,DAT_0003559c,10000)" ,
+          "0" ,
+          "sVar3 = strlen(DAT_0003559c)" ,
+          "local_18 = open(DAT_0003559c,0)" ,
+          "iVar2 = strncmp(DAT_0003559c,\"dniapi/\",7)" ,
+          "iVar2 = strcmp(DAT_0003559c,\".htpasswd\")" ,
+          "FUN_0001b340(DAT_0003559c)"
+        ]
+      } ,
+      {
+        "param1": [
+          "FUN_0001be24(200,&DAT_000209cc,&DAT_00020108,auStack10528,acStack11028,DAT_00038c04,DAT_00038c18)"
+        ]
+      }
+    ]
+  } ,
+  "FUN_00018c44@@FUN_0001c7d8@@0": {
+    "binary_path": "/Users/guosiyu/Desktop/tower/ctf/iot/ciscoRV16/mini_httpd_patched" ,
+    "Func_name": "FUN_00018c44" ,
+    "Func_address": "00018c44" ,
+    "fu_inFunc_index": "0" ,
+    "Fu_funcname": "FUN_0001c7d8" ,
+    "Call_address": "00019088" ,
+    "CallBlockAddress": "00019074" ,
+    "num_param": "2" ,
+    "Fu_Pcode": [
+      {
+        "param0": [
+          "@@@@CALL@@ram@@strncpy@@unique@@0x100001d1" ,
+          "0" ,
+          "register@@0x20@@CALL@@ram@@strlen@@ram@@0x3559c" ,
+          "@@@@CALL@@ram@@FUN_0001c944@@stack@@0xffffffffffffffe8" ,
+          "register@@0x20@@CALL@@ram@@strcmp@@ram@@0x3559c" ,
+          "register@@0x64@@INT_SLESS@@register@@0x20@@const@@0x0" ,
+          "register@@0x20@@CALL@@ram@@strncmp@@ram@@0x3559c" ,
+          "register@@0x20@@CALL@@ram@@open@@ram@@0x3559c" ,
+          "@@@@CALL@@ram@@FUN_0001b340@@ram@@0x3559c"
+        ]
+      } ,
+      {
+        "param1": [
+          "@@@@CALL@@ram@@FUN_0001c944@@stack@@0xffffffffffffffe8" ,
+          "@@@@CALL@@ram@@FUN_0001be24@@const@@0xc8" ,
+          "unique@@0x2600@@INT_SLESS@@const@@0x0@@ram@@0x38c04"
+        ]
+      }
+    ] ,
+    "Fu_Ccode": [
+      {
+        "param0": [
+          "local_18" ,
+          "strncpy((char *)local_272c,DAT_0003559c,10000)" ,
+          "0" ,
+          "sVar3 = strlen(DAT_0003559c)" ,
+          "FUN_0001c944(local_18,DAT_000352fc,DAT_00038c04)" ,
+          "local_18 = open(DAT_0003559c,0)" ,
+          "iVar2 = strncmp(DAT_0003559c,\"dniapi/\",7)" ,
+          "iVar2 = strcmp(DAT_0003559c,\".htpasswd\")" ,
+          "FUN_0001b340(DAT_0003559c)"
+        ]
+      } ,
+      {
+        "param1": [
+          "FUN_0001c944(local_18,DAT_000352fc,DAT_00038c04)" ,
+          "FUN_0001be24(200,&DAT_000209cc,&DAT_00020108,auStack10528,acStack11028,DAT_00038c04,DAT_00038c18)"
+        ]
+      }
+    ]
+  } ,
+  "FUN_00018c44@@close@@0": {
+    "binary_path": "/Users/guosiyu/Desktop/tower/ctf/iot/ciscoRV16/mini_httpd_patched" ,
+    "Func_name": "FUN_00018c44" ,
+    "Func_address": "00018c44" ,
+    "fu_inFunc_index": "0" ,
+    "Fu_funcname": "close" ,
+    "Call_address": "000190bc" ,
+    "CallBlockAddress": "000190b8" ,
+    "num_param": "1" ,
+    "Fu_Pcode": [
+      {
+        "param0": [
+          "@@@@CALL@@ram@@strncpy@@unique@@0x100001d1" ,
+          "@@@@CALL@@ram@@FUN_0001c944@@stack@@0xffffffffffffffe8" ,
+          "register@@0x64@@INT_SLESS@@register@@0x20@@const@@0x0" ,
+          "register@@0x20@@CALL@@ram@@strncmp@@ram@@0x3559c" ,
+          "register@@0x20@@CALL@@ram@@open@@ram@@0x3559c" ,
+          "@@@@CALL@@ram@@FUN_0001c7d8@@stack@@0xffffffffffffffe8" ,
+          "@@@@CALL@@ram@@FUN_0001b340@@ram@@0x3559c" ,
+          "0" ,
+          "register@@0x20@@CALL@@ram@@strlen@@ram@@0x3559c" ,
+          "register@@0x20@@CALL@@ram@@strcmp@@ram@@0x3559c"
+        ]
+      }
+    ] ,
+    "Fu_Ccode": [
+      {
+        "param0": [
+          "sVar3 = strlen(DAT_0003559c)" ,
+          "local_18 = open(DAT_0003559c,0)" ,
+          "iVar2 = strcmp(DAT_0003559c,\".htpasswd\")" ,
+          "FUN_0001c7d8(local_18,DAT_00038c04)" ,
+          "local_18" ,
+          "strncpy((char *)local_272c,DAT_0003559c,10000)" ,
+          "0" ,
+          "FUN_0001c944(local_18,DAT_000352fc,DAT_00038c04)" ,
+          "iVar2 = strncmp(DAT_0003559c,\"dniapi/\",7)" ,
+          "FUN_0001b340(DAT_0003559c)"
+        ]
+      }
+    ]
+  } ,
+  "FUN_00018c44@@FUN_0001be24@@1": {
+    "binary_path": "/Users/guosiyu/Desktop/tower/ctf/iot/ciscoRV16/mini_httpd_patched" ,
+    "Func_name": "FUN_00018c44" ,
+    "Func_address": "00018c44" ,
+    "fu_inFunc_index": "1" ,
+    "Fu_funcname": "FUN_0001be24" ,
+    "Call_address": "00018fd0" ,
+    "CallBlockAddress": "00018f88" ,
+    "num_param": "7" ,
+    "Fu_Pcode": [
+      {
+        "param0": [
+          "0x130"
+        ]
+      } ,
+      {
+        "param1": [
+          "\"Not Modified\""
+        ]
+      } ,
+      {
+        "param2": [
+          "unique@@0x1000015d@@PTRSUB@@const@@0x0@@const@@0x20108" ,
+          "unique@@0x10000159@@PTRSUB@@const@@0x0@@const@@0x20108" ,
+          "unique@@0x10000155@@PTRSUB@@const@@0x0@@const@@0x20108" ,
+          "unique@@0x10000165@@PTRSUB@@const@@0x0@@const@@0x20108"
+        ]
+      } ,
+      {
+        "param3": [
+          "register@@0x2c@@PTRSUB@@register@@0x54@@const@@0xffffd6e0" ,
+          "500"
+        ]
+      } ,
+      {
+        "param4": [
+          "@@@@CALL@@ram@@strncpy@@unique@@0x100001d1" ,
+          "unique@@0x100001d9@@CALL@@ram@@FUN_0001d6f4@@ram@@0x3559c" ,
+          "register@@0x2c@@PTRSUB@@register@@0x54@@const@@0xffffd6e0" ,
+          "register@@0x20@@CALL@@ram@@strncmp@@ram@@0x3559c" ,
+          "register@@0x20@@CALL@@ram@@open@@ram@@0x3559c" ,
+          "@@@@CALL@@ram@@FUN_0001b340@@ram@@0x3559c" ,
+          "register@@0x20@@CALL@@ram@@strlen@@ram@@0x3559c" ,
+          "register@@0x28@@PTRSUB@@register@@0x54@@const@@0xffffd4ec" ,
+          "@@@@CALL@@ram@@snprintf@@register@@0x2c" ,
+          "register@@0x20@@CALL@@ram@@strcmp@@ram@@0x3559c" ,
+          "register@@0x20@@CAST@@unique@@0x100001d9@@@@" ,
+          "register@@0x2c@@PTRSUB@@register@@0x54@@const@@0xffffd4ec" ,
+          "500"
+        ]
+      } ,
+      {
+        "param5": [
+          "0xffffffff"
+        ]
+      } ,
+      {
+        "param6": [
+          "@@@@CALL@@ram@@FUN_0001be24@@const@@0xc8"
+        ]
+      }
+    ] ,
+    "Fu_Ccode": [
+      {
+        "param0": [
+          "0x130"
+        ]
+      } ,
+      {
+        "param1": [
+          "\"Not Modified\""
+        ]
+      } ,
+      {
+        "param2": [
+          "FUN_0001be24(200,&DAT_000209cc,&DAT_00020108,auStack10528,acStack11028,DAT_00038c04,DAT_00038c18)" ,
+          "FUN_0001ba24(0x193,\"Forbidden\",&DAT_00020108,\"File is protected.\")" ,
+          "FUN_0001ba24(0x194,\"Not Found\",&DAT_00020108,\"File not found.\")"
+        ]
+      } ,
+      {
+        "param3": [
+          "FUN_0001be24(200,&DAT_000209cc,&DAT_00020108,auStack10528,acStack11028,DAT_00038c04,DAT_00038c18)" ,
+          "auStack10528"
+        ]
+      } ,
+      {
+        "param4": [
+          "sVar3 = strlen(DAT_0003559c)" ,
+          "FUN_0001be24(200,&DAT_000209cc,&DAT_00020108,auStack10528,acStack11028,DAT_00038c04,DAT_00038c18)" ,
+          "snprintf(acStack11028,500,local_1c,DAT_00034230)" ,
+          "local_18 = open(DAT_0003559c,0)" ,
+          "iVar2 = strcmp(DAT_0003559c,\".htpasswd\")" ,
+          "auStack10528" ,
+          "local_1c" ,
+          "strncpy((char *)local_272c,DAT_0003559c,10000)" ,
+          "500" ,
+          "iVar2 = strncmp(DAT_0003559c,\"dniapi/\",7)" ,
+          "FUN_0001b340(DAT_0003559c)" ,
+          "acStack11028" ,
+          "local_1c = (char *)FUN_0001d6f4(DAT_0003559c,auStack10528,500)"
+        ]
+      } ,
+      {
+        "param5": [
+          "0xffffffff"
+        ]
+      } ,
+      {
+        "param6": [
+          "FUN_0001be24(200,&DAT_000209cc,&DAT_00020108,auStack10528,acStack11028,DAT_00038c04,DAT_00038c18)"
+        ]
+      }
+    ]
+  }
+}
