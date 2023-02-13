@@ -13,8 +13,11 @@ public class FuncTypeInterface {
     //所追踪变量为函数的out，则需要追踪变量的in和out
     //  new ArrayList<>(Arrays.asList("1", "2", "3")   new ArrayList<Integer>(Arrays.asList(1, 2, 3))
     public FuncTypeStruct strcpy = new FuncTypeStruct("strcpy", FuncTypeEnum.typeEnum.Data, new ArrayList<Integer>(List.of(0,1)),new ArrayList<Integer>(List.of(0)));
+    public FuncTypeStruct strncpy = new FuncTypeStruct("strncpy", FuncTypeEnum.typeEnum.Control, new ArrayList<Integer>(List.of(0,1,2)), new ArrayList<Integer>(List.of(0)));
+
     public FuncTypeStruct snprintf = new FuncTypeStruct("snprintf", FuncTypeEnum.typeEnum.Data,get_list(0,50),new ArrayList<Integer>(List.of(0)) );//常量被认为是in，方便追踪
     public FuncTypeStruct sprintf = new FuncTypeStruct("sprintf", FuncTypeEnum.typeEnum.Data,  get_list(0,50),new ArrayList<Integer>(List.of(0)));
+
     public FuncTypeStruct strstr = new FuncTypeStruct("strstr", FuncTypeEnum.typeEnum.Data, new ArrayList<Integer>(List.of(0,1)), new ArrayList<Integer>(List.of()));
     public FuncTypeStruct fclose = new FuncTypeStruct("fclose", FuncTypeEnum.typeEnum.Data, new ArrayList<Integer>(List.of(0)), new ArrayList<Integer>(List.of()));
     public FuncTypeStruct fopen = new FuncTypeStruct("fopen", FuncTypeEnum.typeEnum.Data, new ArrayList<Integer>(List.of(0,1)), new ArrayList<Integer>(List.of()));
@@ -29,7 +32,6 @@ public class FuncTypeInterface {
 
     public FuncTypeStruct strncmp = new FuncTypeStruct("strncmp", FuncTypeEnum.typeEnum.Control, new ArrayList<Integer>(List.of(0,1,2)), new ArrayList<Integer>(List.of()));
     public FuncTypeStruct strcmp = new FuncTypeStruct("strcmp", FuncTypeEnum.typeEnum.Control, new ArrayList<Integer>(List.of(0,1)), new ArrayList<Integer>(List.of()));
-    public FuncTypeStruct strncpy = new FuncTypeStruct("strncpy", FuncTypeEnum.typeEnum.Control, new ArrayList<Integer>(List.of(0,1,2)), new ArrayList<Integer>(List.of(0)));
 
     public FuncTypeStruct strcasecmp = new FuncTypeStruct("strcasecmp", FuncTypeEnum.typeEnum.Control, new ArrayList<Integer>(List.of(0,1)), new ArrayList<Integer>(List.of()));
 
