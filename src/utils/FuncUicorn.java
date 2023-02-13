@@ -16,6 +16,7 @@ public class FuncUicorn {
     public String CallBlockAddress;
     public List<List<String>> Fu_Pcode;
     public List<List<String>> Fu_Ccode;
+    public String CallStatement;
 
 
 
@@ -28,6 +29,7 @@ public class FuncUicorn {
         funcJsNode.put("Call_address",Call_address);
         funcJsNode.put("CallBlockAddress",CallBlockAddress);
         funcJsNode.put("num_param",num_param);
+        funcJsNode.put("CallStatement",CallStatement);
         ArrayNode fu_pcode = funcJsNode.putArray("Fu_Pcode");
         int param_index = 0;
         for(List<String> value:Fu_Pcode){
