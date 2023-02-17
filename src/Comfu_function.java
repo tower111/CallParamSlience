@@ -5,11 +5,15 @@
 //@menupath 
 //@toolbar 
 ///Applications/ghidra_10.1.4_PUBLIC/output aa -scriptPath /Applications/ghidra_10.1.4_PUBLIC/my_script/src -preScript Comfu_function.java -import  /Users/guosiyu/Desktop/tower/ctf/iot/ciscoRV16/mini_httpd_patched
+import Check.CheckStackOverflow;
+import Check.StatisticInfo;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.jcraft.jsch.ConfigRepository;
 import ghidra.app.decompiler.*;
+//import ghidra.app.decompiler.component.DecompilerUtils;
 import ghidra.app.decompiler.component.DecompilerUtils;
+import utils.DecemplierUtilsMe;
 import ghidra.app.script.GhidraScript;
 import ghidra.program.model.listing.*;
 import ghidra.program.model.address.*;
@@ -38,7 +42,10 @@ public class Comfu_function extends GhidraScript {
     public List<String > source_slience_CcodeString=new ArrayList<>();
     public Func funcinfo=new Func();
     public DecompInterface ifc=null;
+    Map chroot_map=new HashMap();   //func_entrypoint:chroot
     public int FuncDeep=0;
+    private DecemplierUtilsMe DecompilerUtilsMe;
+
     public void run() throws Exception {
         String binary_path = currentProgram.getExecutablePath();
 //        BasicBlockModel blockModel = new BasicBlockModel(currentProgram);
@@ -72,6 +79,8 @@ public class Comfu_function extends GhidraScript {
                 Address FuncAddres = func.getEntryPoint();
                 DecompileResults res = ifc.decompileFunction(func, 60, monitor);
                 ClangTokenGroup chroot = res.getCCodeMarkup();
+                if (!chroot_map.containsKey(FuncAddres))
+                    chroot_map.put(FuncAddres,chroot);
                 this.cnodeList=new ArrayList<>();
                 getClangNode(chroot);
                 print(this.cnodeList.toString());
@@ -116,10 +125,12 @@ public class Comfu_function extends GhidraScript {
 //                        }
 //                        Varnode[] params = Arrays.copyOfRange(inputs, 1, inputs.length);
                         int param_index = 0;
+                        Integer real_param_index = 0;
                         List<List<String>> Fu_Pcode_slience=new ArrayList<>();
                         List<List<String>> Fu_Ccode_slience=new ArrayList<>();
                         boolean equal_flag=contine_equal(call_statement);
                         boolean equaled=false;
+                        Map one_slience=new HashMap<>();
                         for (int ichild=0 ;ichild< call_statement.numChildren();ichild++) {//每个参数
 //                            HighVariable h = node.getHigh();
 
@@ -136,6 +147,7 @@ public class Comfu_function extends GhidraScript {
 //                            Address addr = node.getPCAddress();
 //                            List<ClangToken> tokens = DecompilerUtils.getTokens(chroot, addr);//一个语句的所有token
                             ClangNode token_CallParam  = call_statement.Child(ichild);
+                            if (token_CallParam.toString().equals(","))real_param_index+=1;
                             if (!equal_flag)//函数调用没有等号，即所有变量都是参数
                             {
                                 if (token_CallParam instanceof ClangVariableToken){
@@ -160,6 +172,13 @@ public class Comfu_function extends GhidraScript {
                             if(this.source_slience.size()==0)
                                 continue;
                             System.out.println("param index: " + param_index);
+                            if (one_slience.containsKey(real_param_index)){
+                                ((ArrayList<ArrayList<ClangToken>>)one_slience.get(real_param_index)).add(source_slience);
+                            }else{
+                                ArrayList<ArrayList<ClangToken>> tmp_var = new ArrayList<ArrayList<ClangToken>>();
+                                tmp_var.add(source_slience);
+                                one_slience.put(real_param_index, tmp_var);
+                            }
                             source_slience_PcodeString=new ArrayList<>();
                             source_slience_CcodeString=new ArrayList<>();
                             for(ClangToken token:this.source_slience) {
@@ -174,6 +193,8 @@ public class Comfu_function extends GhidraScript {
                                     }
 //                                    if (!source_slience_CcodeString.contains(token.toString()))
                                     source_slience_CcodeString.add(defVarTokenGroup.toString());
+
+
 
                                 } else if (token.Parent() instanceof ClangFuncProto) {//定义函数
                                     source_slience_CcodeString.add(token.toString());
@@ -198,7 +219,9 @@ public class Comfu_function extends GhidraScript {
 //                            for(String l :source_slience_CcodeString)
                             Fu_Pcode_slience.add(list_1);
                             Fu_Ccode_slience.add(list_2);
-                        }
+                        }//一个函数联合体结束
+
+                        FU_silence.RealSlience=one_slience;
                         FU_silence.binary_path=binary_path;
                         FU_silence.Fu_funcname=call_name;
                         FU_silence.CallStatement=call_statement.toString();
@@ -209,8 +232,11 @@ public class Comfu_function extends GhidraScript {
                         FU_silence.Fu_Pcode=Fu_Pcode_slience;
                         FU_silence.Fu_Ccode=Fu_Ccode_slience;
                         FU_silence.CallBlockAddress=CallBlockAddress.toString();
-                        FU_silence.num_param=String.valueOf(param_index);
-                        FU_silence.json_project( funcJsNode);
+                        FU_silence.num_param=String.valueOf(real_param_index);
+                        FU_silence.json_project(funcJsNode);
+//                        CheckStackOverflow checker=new CheckStackOverflow(FU_silence);
+                        StatisticInfo si= new StatisticInfo(FU_silence);
+                        ObjectNode siJson = si.toJson();
                         assert param_index==Fu_Ccode_slience.size();
                         if (param_index!=0)
                             root.set(FU_silence.Func_name+"@@"+FU_silence.Fu_funcname+"@@"+FU_silence.fu_inFunc_index,funcJsNode);
@@ -335,56 +361,88 @@ public class Comfu_function extends GhidraScript {
             return;
         }
         if (func_same_token.size()>0) {//这里可以添加变量类型的检测
-            ArrayList<ClangToken> refs = new ArrayList<ClangToken>();;
-            ClangNode Cnode=null;
-            for (ClangNode sametoken:func_same_token){
-                Cnode=sametoken;
-                refs = get_ref((ClangToken) sametoken,start);
-                if (refs.size()!=0) break;
+//            ArrayList<ClangToken> refs = new ArrayList<ClangToken>();
+            ArrayList<ArrayList<ClangToken>> refs_inst = new ArrayList<ArrayList<ClangToken>>();
+            ClangNode Cnode = null;
+            for (ClangNode sametoken : func_same_token) {
+                ArrayList<ClangToken> tmp_refs = new ArrayList<ClangToken>();
+                Cnode = sametoken;
+                tmp_refs = get_ref((ClangToken) sametoken, start);
+//                if (tmp_refs.size()!=0) break;
+                refs_inst.add(tmp_refs);
             }
-            for (ClangToken ref : refs) {
-                if (source_slience.contains(ref)) continue;
-                source_slience.add(ref);
-                print("st:    "+ref.Parent().toString());
-                print("slience: "+source_slience);
-                if (ref.getSyntaxType() == ClangToken.CONST_COLOR) {
-                    continue;
-                } else if ((ref.getSyntaxType() == ClangToken.VARIABLE_COLOR) | ((ref.getSyntaxType() == GLOBAL_COLOR))) {
-                    SourceSlience(ref, chroot,funcinfo,false);
-                }
-                if (ref.getSyntaxType()==PARAMETER_COLOR && FuncDeep< config.FuncDeep){
-                    FuncDeep+=1;
-                    Reference[] references = getReferencesTo(funcinfo.func.getEntryPoint());
-                    for(Reference reference:references){
-                        Address fromaddr = reference.getFromAddress();
-                        Function referencefunction=getFunctionContaining(fromaddr);
-                        if (referencefunction==funcinfo.func)continue;
+            for(ArrayList<ClangToken> refs:refs_inst) {
+                for (ClangToken ref : refs) {
+                    if (source_slience.contains(ref)) continue;
+                    source_slience.add(ref);
+                    print("st:    " + ref.Parent().toString());
+                    print("slience: " + source_slience);
+                    if (ref.getSyntaxType() == ClangToken.CONST_COLOR) {
+                        continue;
+                    } else if ((ref.getSyntaxType() == ClangToken.VARIABLE_COLOR) | ((ref.getSyntaxType() == GLOBAL_COLOR))) {
+                        SourceSlience(ref, chroot, funcinfo, false);
+                    }
+                    if (ref.getSyntaxType() == PARAMETER_COLOR && FuncDeep < config.FuncDeep) {
+                        FuncDeep += 1;
+                        Reference[] references = getReferencesTo(funcinfo.func.getEntryPoint());
+                        for (Reference reference : references) {
+                            Address fromaddr = reference.getFromAddress();
+                            Function referencefunction = getFunctionContaining(fromaddr);
+                            if (referencefunction == funcinfo.func) continue;
 
-                        Func tmp_funcinfo = new Func();
-                        tmp_funcinfo.func=referencefunction;
-                        DecompileResults res = ifc.decompileFunction(referencefunction, 60, monitor);
-                        ClangTokenGroup cur_chroot = res.getCCodeMarkup();
-                        List<ClangToken> tokens = DecompilerUtils.getTokens(cur_chroot, fromaddr);
-                        if (referencefunction!=null&& !referencefunction.isThunk()){
+                            Func tmp_funcinfo = new Func();
+                            tmp_funcinfo.func = referencefunction;
+                            DecompileResults res = ifc.decompileFunction(referencefunction, 60, monitor);
+                            ClangTokenGroup cur_chroot=null;
+                            if (this.chroot_map.containsKey(referencefunction.getEntryPoint())) {
+                                cur_chroot= (ClangTokenGroup) this.chroot_map.get(referencefunction.getEntryPoint());
+                            }else{
+                                cur_chroot = res.getCCodeMarkup();   //获取速度慢，需要缓存
+                                this.chroot_map.put(referencefunction.getEntryPoint(), cur_chroot);
+                            }
+                            List<ClangToken> tokens = DecompilerUtils.getTokens(cur_chroot, fromaddr);
+
+//                            List<ClangToken> tokens = DecompilerUtilsMe.getTokens(cur_chroot, fromaddr);//函数有问题
+                            if (referencefunction != null && !referencefunction.isThunk()) {
 //                            Instruction frominst = getInstructionAt(fromaddr);
-                            String nums = ref.toString().replace("param_", "");
-                            int num = Integer.parseInt(nums);
-                            List<ClangToken> fromtokens = GegIParam(tokens, num-1);
+                                String nums = ref.toString().replace("param_", "");
+                                int num = Integer.parseInt(nums);
+                                print(ref.toString());
+                                List<ClangToken> fromtokens = GegIParam(tokens, num - 1);
 
-                            for(ClangToken fromtoken:fromtokens)
-                                SourceSlience(fromtoken, cur_chroot,tmp_funcinfo,false);
+                                for (ClangToken fromtoken : fromtokens)
+                                    SourceSlience(fromtoken, cur_chroot, tmp_funcinfo, false);
+                            }
                         }
                     }
                 }
             }
         }//当前函数内每个token都追踪完毕
     }
+//    public List<ClangToken>  GetTokenFromAddr(ClangTokenGroup cur_chroot,Address addr){
+//        for (int i = 0; i < cur_chroot.numChildren(); i++) {
+//            ClangNode child = cur_chroot.Child(i);
+//            child.g
+//            if (!(chroot.Child(i) instanceof ClangTokenGroup)){
+//                if (child instanceof  ClangSyntaxToken) continue;//空格，运算符等
+//                if (child instanceof  ClangBreak) continue; //缩进
+//                if (child instanceof  ClangOpToken) continue;  //操作符  =，*
+//                if (child instanceof  ClangTypeToken) continue;//变量类型
+//                this.cnodeList.add(child);
+////                System.out.println(child);
+//            }
+//            else
+//                getClangNode((ClangTokenGroup) child);
+//        }
+//    }
     public List<ClangToken> GegIParam(List<ClangToken> tokens,int i){
         boolean is_call=false;
         int num=0;
         List<ClangToken> result = new ArrayList<>();
 //        for (ClangToken token:tokens){
         assert tokens.size()!=0;
+        print(tokens.toString());
+        printf(" %d",i);
         ClangNode exp = tokens.get(0).Parent();
         for (int ichild = 0; ichild < exp.numChildren(); ichild++) {
 //            print(exp.toString());

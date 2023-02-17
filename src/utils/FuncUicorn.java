@@ -2,8 +2,12 @@ package utils;
 
 import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
+import ghidra.app.decompiler.ClangToken;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class FuncUicorn {
     public  String binary_path;
@@ -17,6 +21,9 @@ public class FuncUicorn {
     public List<List<String>> Fu_Pcode;
     public List<List<String>> Fu_Ccode;
     public String CallStatement;
+
+    //该变量不会被保存，被用来做检测
+    public Map<Integer,ArrayList<ArrayList<ClangToken>>> RealSlience=new HashMap();  //格式 arraylist(Map(index,arrarylist(每个变量的参数切片列表))) 因为函数参数会出现表达式
 
 
 
