@@ -16,6 +16,8 @@ public class Configer {
     public List<Integer> func_param=new ArrayList<Integer>(List.of());   //设置为空表示遇到不确定的函数不会收集其参数
     public int FuncDeep=1;   //向上引用的深度
 
+
+    public boolean OnlyDanger=true;
     public ArrayList<String>DangerCall=new ArrayList<>();
     public void InitDangerCall(){
         DangerCall.add("system");

@@ -1,13 +1,15 @@
 package Check;
 
-import com.fasterxml.jackson.core.ObjectCodec;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import ghidra.app.decompiler.ClangToken;
 import ghidra.app.decompiler.ClangVariableDecl;
 import ghidra.app.decompiler.ClangVariableToken;
 import ghidra.program.model.data.*;
 import utils.FuncUicorn;
+//import com.fasterxml.jackson.core.JSON
+//import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -15,32 +17,61 @@ import java.util.Map;
 
 public class StatisticInfo {
     public FuncUicorn fu;
-    public StatisticInfo(FuncUicorn fu){
-        this.fu=fu;
+
+    public StatisticInfo(FuncUicorn fu) {
+        this.fu = fu;
         GetInfo();
     }
-    public int number_param=0;
-    public int number_call_param=0;
-    public int number_var=0;
-    public int number_call=0;   //函数数量
-    public int number_const=0;
-    public ArrayList<String> const_list=new ArrayList<String>();
-    public int Slience_len=0;
-    public ArrayList<Map<String,Integer>> ArrayMap=new ArrayList<Map<String,Integer>>();//数组空间大小  变量名：变量空间大小
-    public ArrayList<Map<String,String>> varMap=new ArrayList<Map<String,String>>(); //普通变量空间   变量名：变量类型
 
-    public void json_project(ObjectNode funcJsNode){
-        funcJsNode.put("binary_path",number_param);
-        funcJsNode.put("number_call_param",number_call_param);
-        funcJsNode.put("number_var",number_var);
-        funcJsNode.put("number_call",number_call);
-        funcJsNode.put("number_const",number_const);
-        funcJsNode.put("const_list",const_list.toString());
-        funcJsNode.put("Slience_len",Slience_len);
-        funcJsNode.put("ArrayMap",ArrayMap.toString());
-        funcJsNode.put("varMap",varMap.toString());
+    public int number_param = 0;
+    public int number_call_param = 0;
+    public int number_var = 0;
+    public int number_call = 0;   //函数数量
+    public int number_const = 0;
+    public ArrayList<String> const_list = new ArrayList<String>();
+    public int Slience_len = 0;
+    public ArrayList<Map<String, Integer>> ArrayMap = new ArrayList<Map<String, Integer>>();//数组空间大小  变量名：变量空间大小
+    public ArrayList<Map<String, String>> varMap = new ArrayList<Map<String, String>>(); //普通变量空间   变量名：变量类型
 
+    public void json_project(ObjectNode funcJsNode) {
+        funcJsNode.put("num_param", number_param);
+        funcJsNode.put("number_call_param", number_call_param);
+        funcJsNode.put("number_var", number_var);
+        funcJsNode.put("number_call", number_call);
+        funcJsNode.put("number_const", number_const);
+//        funcJsNode.put("const_list", const_list.toString());
+        funcJsNode.put("Slience_len", Slience_len);
+//        funcJsNode.put("ArrayMap", ArrayMap.toString());
+        funcJsNode.put("varMap", varMap.toString());
+
+
+
+//        ObjectNode funcJsNode = mapper.createObjectNode();
+        ArrayNode Aj = funcJsNode.putArray("const_list");
+        for (String value : const_list) {
+            Aj.add(value);
+        }
+        ArrayNode Am = funcJsNode.putArray("ArrayMap");
+        for(Map value: ArrayMap){
+            ObjectMapper objectMapper = new ObjectMapper();
+            ObjectNode child = objectMapper.createObjectNode();
+            for(Object key:value.keySet()){
+                child.put((String) key, (Integer) value.get(key));
+            }
+            Am.add(child);
+        }
+        ArrayNode vm = funcJsNode.putArray("varMap");
+        for(Map value: varMap){
+            ObjectMapper objectMapper = new ObjectMapper();
+            ObjectNode child = objectMapper.createObjectNode();
+            for(Object key:value.keySet()){
+                child.put((String) key, (String) value.get(key));
+            }
+            vm.add(child);
+        }
     }
+
+
 
     public ObjectNode toJson() {
         ObjectMapper mapper = new ObjectMapper();
