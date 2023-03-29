@@ -112,6 +112,11 @@ public class Comfu_function extends GhidraScript {
                         ClangStatement call_statement = (ClangStatement) iterToken.Parent();
 
                         String call_name=iterToken.toString();
+                        var calleefunc= getGlobalFunctions(call_name);
+                        for(Function f:calleefunc){//所有用户自定义函数设置为统一名字
+                            if (f.isThunk() | f.isExternal())continue;
+                            call_name="USERFUNC";
+                        }
                         if(config.BadFuncName.contains(call_name) ) continue;
                         if(!config.DangerCall.contains(call_name)&& !config.OnlyDanger) continue;
 //                        Address call_addr = inputs[0].getAddress();
@@ -251,7 +256,7 @@ public class Comfu_function extends GhidraScript {
                         assert param_index==Fu_Ccode_slience.size();
                         if (param_index!=0) {
                             root_slience.set(FU_silence.Func_name + "@@" + FU_silence.Fu_funcname + "@@" + FU_silence.fu_inFunc_index, funcJsNode);
-                            root.set(FU_silence.Func_name + "@@" + FU_silence.Fu_funcname + "@@" + FU_silence.fu_inFunc_index, siJson);
+                            root.set(FU_silence.Func_address+"@@"+FU_silence.Func_name + "@@" + FU_silence.Fu_funcname + "@@" + FU_silence.fu_inFunc_index, siJson);
                         }
                     }
 
