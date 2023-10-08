@@ -36,6 +36,9 @@ public class FuncTypeInterface {
     public FuncTypeStruct strcasecmp = new FuncTypeStruct("strcasecmp", FuncTypeEnum.typeEnum.Control, new ArrayList<Integer>(List.of(0,1)), new ArrayList<Integer>(List.of()));
 
 
+    public FuncTypeStruct inet_ntoa = new FuncTypeStruct("inet_ntoa", FuncTypeEnum.typeEnum.Control, new ArrayList<Integer>(List.of(0)), new ArrayList<Integer>(List.of()));
+
+
     public static FuncTypeStruct getClass(String mnemonic) throws ClassNotFoundException, InstantiationException, IllegalAccessException {
         Class<?> clazz = Class.forName("utils.FuncTypeInterface");
         Field[] fieldList = clazz.getDeclaredFields();

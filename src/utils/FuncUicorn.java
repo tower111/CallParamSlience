@@ -21,12 +21,20 @@ public class FuncUicorn {
     public List<List<String>> Fu_Pcode;
     public List<List<String>> Fu_Ccode;
     public String CallStatement;
+    public String md5;
+    public String result;
 
     //该变量不会被保存，被用来做检测
     public Map<Integer,ArrayList<ArrayList<ClangToken>>> RealSlience=new HashMap();  //格式 arraylist(Map(index,arrarylist(每个变量的参数切片列表))) 因为函数参数会出现表达式
 
-
-
+    public String  toString(){
+        this.result="binary_path: "+binary_path+"\n"+
+                "Func_name: "+Func_name+"\n"+"Fu_funcname: "+Fu_funcname+"\n"+"Func_address: "+Func_address+"\n"+
+                "Call_address: "+Call_address+"\n"+"Fu_Ccode: "+Fu_Ccode.toString()+"\n\n\n";
+        System.out.print(result);
+        return result;
+    }
+//    public String
     public void json_project(ObjectNode funcJsNode){
         funcJsNode.put("binary_path",binary_path);
         funcJsNode.put("Func_name",Func_name);
