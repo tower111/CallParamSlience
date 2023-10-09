@@ -17,6 +17,7 @@ public class Configer {
     public List<Integer> func_param=new ArrayList<Integer>(List.of());   //设置为空表示遇到不确定的函数不会收集其参数
     public int FuncDeep=2;   //向上引用的深度
     public int MaxInst=100;//列表中最多token数
+    public int maxSameToken=3;//在一个函数中，从当前token出现的地方向上收集与其相同的token，最多收集多少个
 
 ///Applications/ghidra_10.1.4_PUBLIC/output aa -scriptPath /Applications/ghidra_10.1.4_PUBLIC/my_script/src -postScript Comfu_function.java -import  /Applications/ghidra_10.1.4_PUBLIC/my_script/out/input  -overwrite
     public boolean EnableDangerFunc=true;//仅收集危险函数
@@ -25,8 +26,8 @@ public class Configer {
         DangerCall.add("system");
         DangerCall.add("strcpy");
         DangerCall.add("strncpy");
-        DangerCall.add("memcpy");
-        DangerCall.add("memncpy");
+//        DangerCall.add("memcpy");
+//        DangerCall.add("memncpy");
         DangerCall.add("sprintf");
         DangerCall.add("snprintf");
         DangerCall.add("sscanf");

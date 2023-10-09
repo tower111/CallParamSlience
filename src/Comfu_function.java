@@ -412,6 +412,7 @@ public class Comfu_function extends GhidraScript {
         if (source_slience.size()>= config.MaxInst) return;
         assert token instanceof ClangVariableToken;
 
+
         ArrayList<ClangNode> func_same_token = new ArrayList<ClangNode>();
         cnodeList=new ArrayList<>();
         getClangNode(chroot);
@@ -432,13 +433,16 @@ public class Comfu_function extends GhidraScript {
 //            ArrayList<ClangToken> refs = new ArrayList<ClangToken>();
             ArrayList<ArrayList<ClangToken>> refs_inst = new ArrayList<ArrayList<ClangToken>>();
             ClangNode Cnode = null;
+            int tmpnum=0;
             for (ClangNode sametoken : func_same_token) {//两层引用
                 ArrayList<ClangToken> tmp_refs = new ArrayList<ClangToken>();
-                Cnode = sametoken;
+//                Cnode = sametoken;
                 if(!(sametoken instanceof ClangVariableToken))continue;
                 tmp_refs = get_ref((ClangToken) sametoken, start);
 //                if (tmp_refs.size()!=0) break;
                 refs_inst.add(tmp_refs);
+                tmpnum+=1;
+                if (tmpnum> config.maxSameToken) break;
             }
             for(ArrayList<ClangToken> refs:refs_inst) {
                 for (ClangToken ref : refs) {
